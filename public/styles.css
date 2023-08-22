@@ -56,7 +56,7 @@ body {
 }
 
 
-/* ... Previous CSS code ... */
+
 
 #messages {
     list-style-type: none;
@@ -78,10 +78,7 @@ body {
     color: #ffffff; /* Change text color for better visibility */
 }
 
-/* ... Remaining CSS code ... */
 
-
-/* ... Existing CSS code ... */
 
 .modal {
     display: none;
@@ -94,9 +91,7 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* ... (other CSS rules) ... */
 
-/* ... (other CSS rules) ... */
 
 .modal-content {
     background-color: #ffffff;
@@ -105,18 +100,18 @@ body {
     padding: 20px;
     width: 50%;
     border-radius: 8px;
-    text-align: center; /* Center the content horizontally */
+    text-align: center; 
 }
 
 .username-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    align-items: center; 
 }
 
 #modal-username {
     width: 70%;
-    margin-bottom: 10px; /* Add space between the input and button */
+    margin-bottom: 10px; 
     padding: 10px;
     border: 2px solid #000000;
     border-radius: 50px;
@@ -137,10 +132,7 @@ body {
     background-color: #005580;
 }
 
-/* ... (other CSS rules) ... */
-/* ... (other CSS rules) ... */
 
-/* ... (other CSS rules) ... */
 
 #user-list ul {
     list-style: none;
@@ -155,11 +147,11 @@ body {
 }
 
 #user-list li:nth-child(odd) {
-    background-color: #f0f0f0; /* Off white background for odd-numbered users */
+    background-color: #f0f0f0; 
 }
 
 #user-list li:nth-child(even) {
-    background-color: #ffffff; /* White background for even-numbered users */
+    background-color: #ffffff; 
 }
 
-/* ... (other CSS rules) ... */
+
