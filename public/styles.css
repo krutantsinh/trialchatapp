@@ -1,0 +1,165 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    display: flex;
+    height: 100vh;
+}
+
+#left-section {
+    width: 25%;
+    background-color: #f0f0f0;
+}
+
+#right-section {
+    width: 75%;
+}
+
+#header-left, #header-right {
+    font-size: 20px;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #0088cc;
+}
+
+#user-list {
+    padding: 20px;
+}
+
+#chat-container {
+    padding: 20px;
+}
+
+#input {
+    width: 99%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+#form button {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #0088cc;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#form button:hover {
+    background-color: #005580;
+}
+
+
+/* ... Previous CSS code ... */
+
+#messages {
+    list-style-type: none;
+    padding: 0;
+}
+
+#messages li {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 50px; /* Circular rounded corners */
+}
+
+#messages li:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd-numbered messages */
+}
+
+#messages li:nth-child(even) {
+    background-color: #1da1f2; /* Skyblue background for even-numbered messages */
+    color: #ffffff; /* Change text color for better visibility */
+}
+
+/* ... Remaining CSS code ... */
+
+
+/* ... Existing CSS code ... */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ... (other CSS rules) ... */
+
+/* ... (other CSS rules) ... */
+
+.modal-content {
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 25vh;
+    padding: 20px;
+    width: 50%;
+    border-radius: 8px;
+    text-align: center; /* Center the content horizontally */
+}
+
+.username-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+}
+
+#modal-username {
+    width: 70%;
+    margin-bottom: 10px; /* Add space between the input and button */
+    padding: 10px;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    outline: none;
+}
+
+#modal-submit {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #1da1f2;
+    color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#modal-submit:hover {
+    background-color: #005580;
+}
+
+/* ... (other CSS rules) ... */
+/* ... (other CSS rules) ... */
+
+/* ... (other CSS rules) ... */
+
+#user-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#user-list li {
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+#user-list li:nth-child(odd) {
+    background-color: #f0f0f0; /* Off white background for odd-numbered users */
+}
+
+#user-list li:nth-child(even) {
+    background-color: #ffffff; /* White background for even-numbered users */
+}
+
+/* ... (other CSS rules) ... */
