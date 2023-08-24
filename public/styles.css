@@ -9,6 +9,7 @@ body {
     height: 100vh;
 }
 
+
 #left-section {
     width: 25%;
     background-color: #f0f0f0;
@@ -22,7 +23,7 @@ body {
     font-size: 20px;
     padding: 10px;
     color: #ffffff;
-    background-color: #0088cc;
+    background-color: #1da1f2;
 }
 
 #user-list {
@@ -154,4 +155,18 @@ body {
     background-color: #ffffff; 
 }
 
+#website-name {
+    text-align: center;
+    font-size: 24px;
+    /* padding: 20px; */
+    color: #1da1f2;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    /* border-bottom: 20px solid #1da1f2; */
+}
 
+.system-message {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}

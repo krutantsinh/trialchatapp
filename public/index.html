@@ -5,14 +5,13 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <h1 id="website-name"   >ChatBox by Krutant</h1>
     <div id="container">
         <div id="nameModal" class="modal">
             <div class="modal-content">
                 <h2>Enter Your Name</h2>
-                <div class="username-container">
-                    <input id="modal-username" placeholder="Your Name" required tabindex="1" />
-                    <button id="modal-submit">Submit</button>
-                </div>
+                <input id="modal-username" placeholder="Your Name" required tabindex="1" />
+                <button id="modal-submit">Submit</button>
             </div>
         </div>
 
@@ -22,6 +21,7 @@
                 <ul id="names"></ul>
             </div>
         </div>
+
         <div id="right-section">
             <div id="header-right">Chats</div>
             <div id="chat-container">
@@ -36,125 +36,6 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(function () {
-            $('#modal-username').focus();
-
-            const socket = io();
-            const usernameInput = $('#modal-username');
-            const modalSubmitButton = $('#modal-submit');
-            const form = $('#form');
-            const input = $('#input');
-            const nameModal = $('#nameModal');
-            let currentUsername = '';
-
-            // Open the name modal when the page loads
-            nameModal.show();
-
-            modalSubmitButton.click(() => {
-                const username = usernameInput.val().trim();
-                if (username !== '') {
-                    currentUsername = username;
-                    socket.emit('user joined', username);
-                    nameModal.hide();
-                }
-            });
-
-            input.keydown((e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    const inputValue = input.val().trim();
-                    if (inputValue.startsWith('/')) {
-                        handleSlashCommand(inputValue);
-                        input.val(''); // Clear the input after processing slash command
-                    } else {
-                        sendChatMessage();
-                    }
-                }
-            });
-
-            form.submit((e) => {
-                e.preventDefault();
-                sendChatMessage();
-                return false;
-            });
-
-            function handleSlashCommand(command) {
-                const commandArgs = command.split(' ');
-                const commandName = commandArgs[0].toLowerCase();
-                switch (commandName) {
-                    case '/help':
-                        showHelpPopup();
-                        break;
-                    case '/random':
-                        sendRandomNumber();
-                        break;
-                    case '/clear':
-                        clearChat();
-                        break;
-                    default:
-                        sendChatMessage();
-                        break;
-                }
-            }
-
-            function showHelpPopup() {
-                const helpMessage = `
-                    '/help - show this message
-                    /random - print a random number
-                    /clear - clears the chat'
-                `;
-                alert(helpMessage);
-            }
-
-            function sendRandomNumber() {
-                const randomNum = Math.floor(Math.random() * 90000) + 10000;
-                socket.emit('chat message', { username: currentUsername, message: `Your Random No. is :  ${randomNum}` });
-            }
-
-            function clearChat() {
-                $('#messages').empty();
-            }
-
-            function sendChatMessage() {
-                const message = input.val();
-                if (message.trim() !== '') {
-                    socket.emit('chat message', { username: currentUsername, message });
-                    input.val('');
-                }
-            }
-
-            socket.on('chat message', (msg) => {
-                const messageWithEmojis = replaceEmojis(msg.message);
-                $('#messages').append($('<li>').text(`${msg.username}: ${messageWithEmojis}`));
-            });
-
-            socket.on('user joined', (username) => {
-                $('#names').append($('<li>').text(username));
-            });
-
-            socket.on('user left', (username) => {
-                $(`#names li:contains('${username}')`).remove();
-            });
-
-            function replaceEmojis(message) {
-                const replacements = {
-                    'react': '⚛️',
-                    'woah': '😯',
-                    'hey': '👋',
-                    'lol': '😂',
-                    'like': '🤍',
-                    'congratulations': '🎉'
-                };
-
-                for (const word in replacements) {
-                    const regex = new RegExp(`\\b${word}\\b`, 'gi');
-                    message = message.replace(regex, replacements[word]);
-                }
-
-                return message;
-            }
-        });
-    </script>
+    <script src="home.js"></script>
 </body>
 </html>
