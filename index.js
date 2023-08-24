@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const userDefinedValues = {};
 
 const app = express();
 const server = http.createServer(app);
@@ -14,10 +15,30 @@ io.on('connection', (socket) => {
     console.log('A user connected');
 
     // Listen for incoming messages
-    socket.on('chat message', (message) => {
-        // Broadcast the message to all connected clients
-        io.emit('chat message', message);
+    socket.on('chat message', (msg) => {
+        if (msg.message.startsWith('/rem')) {
+            handleRemCommand(msg);
+        } else {
+            io.emit('chat message', msg);
+        }
     });
+    function handleRemCommand(msg) {
+        const commandArgs = msg.message.split(' ');
+        if (commandArgs.length >= 3 && commandArgs[0] === '/rem') {
+            const name = commandArgs[1];
+            const value = commandArgs.slice(2).join(' ');
+            userDefinedValues[name] = value;
+            io.emit('chat message', { username: msg.username, message: `Value set for ${name}` });
+        } else if (commandArgs.length === 2 && commandArgs[0] === '/rem') {
+            const name = commandArgs[1];
+            const value = userDefinedValues[name];
+            if (value !== undefined) {
+                io.emit('chat message', { username: msg.username, message: `${name}: ${value}` });
+            } else {
+                io.emit('chat message', { username: msg.username, message: `No value set for ${name}` });
+            }
+        }
+    }
 
     // Handle user joined
     socket.on('user joined', (username) => {

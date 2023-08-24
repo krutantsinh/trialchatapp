@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Chatbox by Krutant</title>
+    <title>Socket.IO Chat App</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1 id="website-name"   >ChatBox by Krutant</h1>
+    <h1 id="website-name">ChatBox by Krutant</h1>
     <div id="container">
         <div id="nameModal" class="modal">
             <div class="modal-content">
@@ -24,8 +23,9 @@
         </div>
 
         <div id="right-section">
-            <div id="header-right">Chats</div>
+            <div id="header-right">Chats User Count: <span id="count">0</span></div>
             <div id="chat-container">
+                <!-- <div id="user-count">User Count: <span id="count">0</span></div> -->
                 <ul id="messages"></ul>
                 <form id="form" action="">
                     <input id="input" autocomplete="off" />

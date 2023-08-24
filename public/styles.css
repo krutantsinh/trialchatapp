@@ -170,7 +170,6 @@ body {
     font-style: italic;
     color: #888;
 }
-/* Existing CSS rules... */
 
 /* Add media query for screens with a maximum width of 768px (typical tablet/mobile width) */
 @media (max-width: 768px) {

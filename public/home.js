@@ -8,7 +8,6 @@ $(function () {
     const input = $('#input');
     const nameModal = $('#nameModal');
     let currentUsername = '';
-    let isUsersPanelCollapsed = true;
 
     nameModal.show();
 
@@ -21,15 +20,13 @@ $(function () {
         }
     });
 
-
-
     input.keydown((e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             const inputValue = input.val().trim();
             if (inputValue.startsWith('/')) {
                 handleSlashCommand(inputValue);
-                input.val(''); // Clear the input after processing slash command
+                input.val('');
             } else {
                 sendChatMessage();
             }
@@ -45,38 +42,39 @@ $(function () {
     function handleSlashCommand(command) {
         const commandArgs = command.split(' ');
         const commandName = commandArgs[0].toLowerCase();
-        switch (commandName) {
-            case '/help':
-                showHelpPopup();
-                break;
-            case '/random':
-                sendRandomNumber();
-                break;
-            case '/clear':
-                clearChat();
-                break;
-            default:
-                sendChatMessage();
-                break;
+
+        if (commandName === '/rem') {
+            handleRemCommand(commandArgs);
+            return;
+        }
+
+        if (commandName === '/calc') {
+            handleCalcCommand(commandArgs);
+            return;
+        }
+
+        // Handle other commands here
+    }
+
+    function handleRemCommand(commandArgs) {
+        const name = commandArgs[1];
+        const value = commandArgs.slice(2).join(' ');
+        localStorage.setItem(`rem-${name}`, value);
+        sendSystemMessage(`Stored value "${value}" for name "${name}"`);
+    }
+
+    function handleCalcCommand(commandArgs) {
+        const expression = commandArgs.slice(1).join(' ');
+        try {
+            const result = eval(expression);
+            sendSystemMessage(`Result: ${expression} = ${result}`);
+        } catch (error) {
+            sendSystemMessage(`Error: ${error.message}`);
         }
     }
 
-    function showHelpPopup() {
-        const helpMessage = `
-            '/help - show this message
-            /random - print a random number
-            /clear - clears the chat'
-        `;
-        alert(helpMessage);
-    }
-
-    function sendRandomNumber() {
-        const randomNum = Math.floor(Math.random() * 90000) + 10000;
-        socket.emit('chat message', { username: currentUsername, message: `Your Random No. is :  ${randomNum}` });
-    }
-
-    function clearChat() {
-        $('#messages').empty();
+    function sendSystemMessage(message) {
+        $('#messages').append($('<li>').addClass('system-message').text(message));
     }
 
     function sendChatMessage() {
@@ -96,12 +94,14 @@ $(function () {
         $('#names').append($('<li>').text(username));
         const connectedMessage = `${username} has joined the chat`;
         $('#messages').append($('<li>').addClass('system-message').text(connectedMessage));
+        updateOnlineUserCount();
     });
 
     socket.on('user left', (username) => {
         $(`#names li:contains('${username}')`).remove();
         const disconnectedMessage = `${username} has left the chat`;
         $('#messages').append($('<li>').addClass('system-message').text(disconnectedMessage));
+        updateOnlineUserCount();
     });
 
     function replaceEmojis(message) {
@@ -120,5 +120,10 @@ $(function () {
         }
 
         return message;
+    }
+
+    function updateOnlineUserCount() {
+        const userCount = $('#names li').length;
+        $('#count').text(userCount);
     }
 });
