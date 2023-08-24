@@ -170,3 +170,45 @@ body {
     font-style: italic;
     color: #888;
 }
+/* Existing CSS rules... */
+
+/* Add media query for screens with a maximum width of 768px (typical tablet/mobile width) */
+@media (max-width: 768px) {
+    #container {
+        flex-direction: column;
+    }
+
+    #left-section, #right-section {
+        width: 100%;
+    }
+
+    /* Adjust font size for smaller screens */
+    #header-left, #header-right {
+        font-size: 18px;
+    }
+
+    /* Adjust padding for smaller screens */
+    #user-list, #chat-container {
+        padding: 10px;
+    }
+
+    #input {
+        width: 90%;
+    }
+
+    #form button {
+        padding: 6px 10px;
+    }
+
+    /* Adjust message styling for smaller screens */
+    #messages li {
+        padding: 5px;
+    }
+
+    /* Adjust modal styling for smaller screens */
+    .modal-content {
+        width: 80%;
+    }
+
+    /* Additional adjustments as needed */
+}
